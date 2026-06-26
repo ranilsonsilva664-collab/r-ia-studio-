@@ -123,47 +123,33 @@
         </div>
     </section>
 
-    <!-- SESSÃO 3: SERVIÇOS -->
-    <section id="services" class="services-section">
+    <!-- SESSÃO 3: SERVIÇOS & PORTFÓLIO -->
+    <section id="services" class="portfolio-section">
         <div class="container">
             <div class="section-header text-center">
-                <span class="badge neon-yellow-text">SERVIÇOS</span>
-                <h2 class="section-title">Escolha o que sua marca precisa agora</h2>
-                <p class="section-subtitle">Soluções diretas para melhorar sua imagem, divulgar seus serviços e atrair mais clientes.</p>
+                <span class="badge neon-yellow-text">SERVIÇOS & PORTFÓLIO</span>
+                <h2 class="section-title">Explore nossos projetos e serviços</h2>
+                <p class="section-subtitle">Soluções reais desenvolvidas com inteligência artificial para o seu negócio.</p>
             </div>
-            
-            <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="service-card card-glass">
-                    <div class="service-icon"><i class="fa-solid fa-video"></i></div>
-                    <h3>Vídeos com IA</h3>
-                    <p>Comerciais, vídeos para Reels, avatares, campanhas e conteúdos criativos para sua marca se destacar nas redes sociais.</p>
-                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Vídeos%20com%20IA." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero vídeos com IA</a>
+
+            <!-- Abas do Portfólio -->
+            <div class="portfolio-tabs">
+                <button class="tab-btn active" data-tab="all">Todos</button>
+                <button class="tab-btn" data-tab="videos">Vídeos com IA</button>
+                <button class="tab-btn" data-tab="apps">Web Apps</button>
+                <button class="tab-btn" data-tab="sites">Sites</button>
+                <button class="tab-btn" data-tab="design">Fotos & Banners</button>
+            </div>
+
+            <!-- Grid do Portfólio / Carrossel (Preenchido dinamicamente pelo script.js) -->
+            <div class="portfolio-carousel-wrapper">
+                <button class="carousel-control prev-btn" id="carouselPrevBtn" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Cards will be injected by script.js -->
                 </div>
                 
-                <!-- Card 2 -->
-                <div class="service-card card-glass">
-                    <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h3>Mini Sites e Páginas de Venda</h3>
-                    <p>Páginas modernas, rápidas e persuasivas para apresentar seus produtos ou serviços e levar o cliente direto para o WhatsApp.</p>
-                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Mini%20Sites%20e%20Páginas." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero meu mini site</a>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="service-card card-glass">
-                    <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                    <h3>Artes, Banners e Imagens Profissionais</h3>
-                    <p>Criativos para Instagram, anúncios, campanhas, fotos profissionais e materiais visuais para deixar sua marca mais forte.</p>
-                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Artes%20e%20Design." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero artes profissionais</a>
-                </div>
-                
-                <!-- Card 4 -->
-                <div class="service-card card-glass">
-                    <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>Ferramentas Inteligentes para Empresas</h3>
-                    <p>Aplicações simples, formulários, diagnósticos, automações e soluções personalizadas para facilitar sua rotina e atendimento.</p>
-                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Ferramentas%20Inteligentes." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero uma solução personalizada</a>
-                </div>
+                <button class="carousel-control next-btn" id="carouselNextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
             
             <!-- Chamada Final -->
@@ -175,6 +161,23 @@
             
         </div>
     </section>
+
+    <!-- Lightboxes (Video/Image Previews) -->
+    <div class="video-lightbox" id="videoLightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <div class="lightbox-content">
+            <video id="lightboxVideo" controls controlsList="nodownload">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="image-lightbox" id="imageLightbox">
+        <button class="lightbox-close" id="imageLightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Preview">
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
