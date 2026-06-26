@@ -69,8 +69,8 @@
                 </div>
                 
                 <span class="badge neon-yellow-text">SOLUÇÕES DIGITAIS COM IA</span>
-                <h1 class="hero-title">Sua marca mais <span class="text-glow">profissional</span>, moderna e pronta para vender no digital</h1>
-                <p class="hero-description">Criamos vídeos com IA, mini sites, páginas de venda, artes profissionais e soluções digitais para empresas que querem chamar atenção, passar mais confiança e atrair clientes pelo Instagram, WhatsApp e internet.</p>
+                <h1 class="hero-title editable" data-key="hero-title">Sua marca mais <span class="text-glow">profissional</span>, moderna e pronta para vender no digital</h1>
+                <p class="hero-description editable" data-key="hero-description">Criamos vídeos com IA, mini sites, páginas de venda, artes profissionais e soluções digitais para empresas que querem chamar atenção, passar mais confiança e atrair clientes pelo Instagram, WhatsApp e internet.</p>
                 
                 <div class="hero-buttons">
                     <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Quero um orçamento no WhatsApp</a>
@@ -83,7 +83,8 @@
             <div class="hero-image-wrapper">
                 <div class="portrait-glow"></div>
                 <div class="hero-image-card card-glass">
-                    <img src="assets/avatar.png" alt="Especialista no Computador" class="hero-img">
+                    <img src="assets/avatar.png" alt="Especialista no Computador" class="hero-img" id="avatarImg">
+                    <button class="change-avatar-btn" id="changeAvatarBtn" title="Alterar Foto"><i class="fa-solid fa-camera"></i></button>
                     <!-- Floating Tech Icons -->
                     <div class="tech-icon icon-1"><i class="fa-solid fa-robot"></i></div>
                     <div class="tech-icon icon-2"><i class="fa-solid fa-code"></i></div>
@@ -96,8 +97,8 @@
     <!-- SESSÃO 2: AUTORIDADE / CONFIANÇA -->
     <section id="authority" class="authority-section">
         <div class="container text-center">
-            <h2 class="section-title">Tecnologia e criatividade para transformar sua presença digital</h2>
-            <p class="section-subtitle">Unimos inteligência artificial, design e estratégia para criar materiais que deixam sua marca mais bonita, mais confiável e mais preparada para vender.</p>
+            <h2 class="section-title editable" data-key="auth-title">Tecnologia e criatividade para transformar sua presença digital</h2>
+            <p class="section-subtitle editable" data-key="auth-subtitle">Unimos inteligência artificial, design e estratégia para criar materiais que deixam sua marca mais bonita, mais confiável e mais preparada para vender.</p>
             
             <div class="authority-grid">
                 <div class="authority-card card-glass">
@@ -186,7 +187,110 @@
         </div>
     </footer>
 
+    <!-- ==========================================
+       PAINEL ADMINISTRATIVO (ADMIN PANEL)
+       ========================================== -->
+    
+    <!-- Botão de Engrenagem Flutuante para Ativação -->
+    <button class="admin-toggle-btn" id="adminToggleBtn" title="Ativar Modo Admin" style="display: none !important; background: rgb(255, 230, 0); color: rgb(0, 0, 0);">
+        <i class="fa-solid fa-gear"></i>
+    </button>
+
+    <!-- Barra de Controle do Administrador -->
+    <div class="admin-controls-panel" id="adminControlsPanel">
+        <div class="admin-panel-brand">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Modo Editor
+        </div>
+        <div class="admin-panel-whatsapp-config">
+            <label for="adminWhatsappPhone"><i class="fa-brands fa-whatsapp"></i> Whats (Apenas números):</label>
+            <input type="text" id="adminWhatsappPhone" placeholder="Ex: 5511999999999">
+        </div>
+        <div class="admin-panel-buttons">
+            <button class="admin-btn admin-btn-primary" id="addNewItemBtn">
+                <i class="fa-solid fa-plus"></i> Novo Vídeo/Card
+            </button>
+            <button class="admin-btn admin-btn-success" id="exportHtmlBtn">
+                <i class="fa-solid fa-download"></i> Exportar HTML Final
+            </button>
+            <button class="admin-btn admin-btn-danger" id="exitAdminBtn">
+                <i class="fa-solid fa-xmark"></i> Sair
+            </button>
+        </div>
+        <div class="admin-panel-tip">
+            Dica: Dê dois cliques em qualquer texto com borda amarela para editá-lo diretamente na tela.
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Item do Portfólio -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-modal-content card-glass">
+            <button class="admin-modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="modalTitle">Editar Item do Portfólio</h3>
+            <form id="portfolioItemForm">
+                <input type="hidden" id="editItemId" value="">
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemTitle">Título do Card</label>
+                    <input type="text" id="itemTitle" required placeholder="Ex: Comercial de Perfume com IA" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemCategory">Aba/Categoria</label>
+                    <select id="itemCategory" required class="form-input form-select">
+                        <option value="videos">Vídeos com IA</option>
+                        <option value="apps">Web Apps</option>
+                        <option value="sites">Sites</option>
+                        <option value="design">Fotos & Banners</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemMediaType">Tipo de Mídia</label>
+                    <select id="itemMediaType" required class="form-input form-select">
+                        <option value="video">Vídeo (.mp4 ou URL de vídeo)</option>
+                        <option value="image">Imagem / Foto (Mockup ou Design)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemMediaUrl">Link de Mídia (URL ou arquivo local)</label>
+                    <input type="text" id="itemMediaUrl" required placeholder="Ex: https://caminho.com/video.mp4 ou assets/video.mp4" class="form-input">
+                    <span class="form-tip">Cole o link direto do vídeo/imagem ou o nome do arquivo que está na pasta assets (ex: assets/video.mp4).</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemExternalUrl">Link do Projeto / Demo (Opcional)</label>
+                    <input type="text" id="itemExternalUrl" placeholder="Ex: https://meusite.com.br" class="form-input">
+                    <span class="form-tip">Use apenas se quiser que o cliente seja direcionado para outro site ao clicar (ideal para Apps e Sites).</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="itemDescription">Descrição Curta</label>
+                    <textarea id="itemDescription" required placeholder="Explique brevemente o projeto..." class="form-input form-textarea"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="saveItemBtn">Salvar no Portfólio</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Alterar Imagens/Avatar -->
+    <div class="admin-modal" id="avatarModal">
+        <div class="admin-modal-content card-glass">
+            <button class="admin-modal-close" id="avatarModalClose"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Alterar Imagem do Avatar</h3>
+            <form id="avatarForm">
+                <div class="form-group">
+                    <label class="form-label" for="avatarUrl">Link da Imagem / Caminho Local</label>
+                    <input type="text" id="avatarUrl" required placeholder="Ex: assets/avatar.png ou link da web" class="form-input">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Atualizar Imagem</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Custom JS -->
     <script src="script.js"></script>
+    <script id="portfolioDataScript" type="application/json">[]</script>
 </body>
 </html>

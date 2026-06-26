@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================
        DATA STRUCTURES (DEFAULT DATA)
@@ -803,7 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPortfolio();
 
     const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
+    const navLinks = document.querySelectorAll('.nav-link');
 
     window.addEventListener('scroll', () => {
         let currentSection = '';
