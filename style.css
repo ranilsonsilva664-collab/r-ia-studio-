@@ -668,6 +668,7 @@ h1, h2, h3, h4 {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+        top: 25%; /* Move arrows up over the image so they don't cover the text */
     }
     
     .portfolio-item {

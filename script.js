@@ -216,7 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${mediaHtml}
                 ${adminActionsHtml}
                 <div class="card-info">
-                    <span class="card-category">${getCategoryLabel(item.category)}</span>
+                    <span class="card-category">
+                        ${item.type === 'video' ? '<i class="fa-solid fa-circle-play" style="margin-right: 5px;"></i>' : ''}${getCategoryLabel(item.category)}
+                    </span>
                     <h3>${item.title}</h3>
                     <p>${item.description}</p>
                 </div>
