@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Atalho secreto: Dois cliques na logo abrem o prompt de senha para editar
-    const logoEl = document.querySelector('.logo');
+    const logoEl = document.querySelector('.brand-logo');
     if (logoEl) {
         logoEl.addEventListener('dblclick', (e) => {
             e.preventDefault();
