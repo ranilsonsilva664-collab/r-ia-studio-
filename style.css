@@ -1491,4 +1491,215 @@ body.admin-mode-active .change-avatar-btn {
     box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
+/* ==========================================
+   NEW LANDING PAGE LAYOUT STYLES
+   ========================================== */
 
+/* Brand Identity */
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.brand-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.brand-r {
+    background: var(--color-primary);
+    color: var(--color-black);
+    font-weight: 800;
+    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.brand-name {
+    color: var(--color-text-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+.brand-sub {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-brand-mobile {
+    display: none;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 992px) {
+    .header .brand-sub { display: none; }
+    .hero-brand-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-brand-mobile .brand-top {
+        justify-content: center;
+    }
+}
+
+.hero-small-text {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.hero-small-text i {
+    color: var(--color-primary);
+}
+
+/* Authority Section */
+.authority-section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.authority-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 60px 0;
+}
+
+.authority-card {
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+}
+
+.authority-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--border-glass-hover);
+}
+
+.authority-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    text-shadow: var(--glow-shadow-accent);
+}
+
+.authority-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+}
+
+/* Services Section */
+.services-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, rgba(3,8,22,0) 0%, rgba(10,18,42,0.3) 100%);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.service-card {
+    padding: 40px 30px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    background: rgba(0, 240, 255, 0.1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Final CTA */
+.final-cta {
+    margin-top: 80px;
+    padding: 60px 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(10,18,42,0.8) 0%, rgba(0,102,255,0.2) 100%);
+    border: 1px solid var(--border-glass-hover);
+}
+
+.final-cta h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff, var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.final-cta p {
+    font-size: 1.2rem;
+    color: var(--color-text-main);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-large {
+    padding: 16px 36px;
+    font-size: 1.1rem;
+}
+
+/* Utility Animations */
+.pulse-animation {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.mt-4 { margin-top: 2rem; }

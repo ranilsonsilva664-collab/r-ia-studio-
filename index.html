@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Creative Studio - Portfólio premium de criação de vídeos, web apps, sites e fotos profissionais usando Inteligência Artificial.">
-    <title>AI Creative Studio | Portfólio de Serviços de IA</title>
+    <meta name="description" content="R IA Studio - Digital & AI Solutions. Portfólio premium de criação de vídeos, web apps, sites e artes usando Inteligência Artificial.">
+    <title>R IA Studio | Digital & AI Solutions</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Outfit:wght@400;600;800&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,7 +17,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-whatsapp="5511999999999" class="">
+<body data-whatsapp="5511999999999">
 
     <!-- Background Glows -->
     <div class="glow-bg glow-1"></div>
@@ -27,16 +27,19 @@
     <!-- Header / Navbar -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">
-                <span class="logo-accent">AI</span> Creative Studio
+            <a href="#" class="brand-logo">
+                <div class="brand-top">
+                    <span class="brand-r">R</span>
+                    <span class="brand-name">IA Studio</span>
+                </div>
+                <span class="brand-sub">Digital & AI Solutions</span>
             </a>
             
             <nav class="nav">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">Sobre</a>
-                <a href="#portfolio" class="nav-link active">Portfólio</a>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#authority" class="nav-link">Sobre</a>
                 <a href="#services" class="nav-link">Serviços</a>
-                <a href="#contact" class="nav-link nav-btn">Orçamento</a>
+                <a href="https://wa.me/5511999999999" target="_blank" class="nav-link nav-btn">Orçamento</a>
             </nav>
             
             <button class="mobile-nav-toggle" aria-label="Abrir Menu">
@@ -48,537 +51,139 @@
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu">
         <a href="#home" class="mobile-link">Home</a>
-        <a href="#about" class="mobile-link">Sobre</a>
-        <a href="#portfolio" class="mobile-link">Portfólio</a>
+        <a href="#authority" class="mobile-link">Sobre</a>
         <a href="#services" class="mobile-link">Serviços</a>
-        <a href="#contact" class="mobile-link mobile-btn">Orçamento</a>
+        <a href="https://wa.me/5511999999999" target="_blank" class="mobile-link mobile-btn">Orçamento</a>
     </div>
 
-    <!-- Hero Section -->
+    <!-- SESSÃO 1: HERO -->
     <section id="home" class="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <span class="badge neon-yellow-text editable" data-key="hero-badge">Agência Digital de Inteligência Artificial</span>
-                <h1 class="hero-title editable" data-key="hero-title">Elevando sua Marca com <span class="text-glow">Inteligência Artificial</span> de Alta Performance</h1>
-                <p class="hero-description editable" data-key="hero-description">Criamos vídeos cinematográficos com IA, aplicações web inteligentes, websites premium de conversão e identidades visuais de tirar o fôlego.</p>
+                <div class="hero-brand-mobile">
+                    <div class="brand-top">
+                        <span class="brand-r">R</span>
+                        <span class="brand-name">IA Studio</span>
+                    </div>
+                    <span class="brand-sub">Digital & AI Solutions</span>
+                </div>
+                
+                <span class="badge neon-yellow-text">SOLUÇÕES DIGITAIS COM IA</span>
+                <h1 class="hero-title">Sua marca mais <span class="text-glow">profissional</span>, moderna e pronta para vender no digital</h1>
+                <p class="hero-description">Criamos vídeos com IA, mini sites, páginas de venda, artes profissionais e soluções digitais para empresas que querem chamar atenção, passar mais confiança e atrair clientes pelo Instagram, WhatsApp e internet.</p>
+                
                 <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">Ver Portfólio</a>
-                    <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp</a>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Quero um orçamento no WhatsApp</a>
+                    <a href="#services" class="btn btn-secondary">Ver serviços</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work Experience / About Section -->
-    <section id="about" class="experience-section">
-        <div class="container experience-container">
-            
-            <!-- Habilidades / Projetos à Esquerda -->
-            <div class="experience-info">
-                <div class="section-badge-wrapper">
-                    <span class="btn-glow-pill editable" data-key="about-badge">Serviços &amp; Especialidades</span>
-                </div>
-                
-                <h2 class="experience-title editable" data-key="about-title">Leva a sua marca para o futuro digital</h2>
-                
-                <div class="experience-grid" id="experienceGrid">
-                    <!-- Gerado dinamicamente para permitir edição total ou mantido estático -->
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-1">Vídeos com IA</h3>
-                            <p class="editable" data-key="exp-desc-1">Geração de comerciais, avatares realistas e campanhas de alta conversão.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-2">Aplicações Web Inteligentes</h3>
-                            <p class="editable" data-key="exp-desc-2">Plataformas interativas e ferramentas integradas com APIs de IA.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-3">Sites de Alta Conversão</h3>
-                            <p class="editable" data-key="exp-desc-3">Landing pages institucionais sofisticadas, otimizadas para SEO.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-4">Fotos &amp; Retratos Corporativos</h3>
-                            <p class="editable" data-key="exp-desc-4">Transformação de imagens e retratos profissionais impecáveis com IA.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-5">Banners &amp; Social Media Flyers</h3>
-                            <p class="editable" data-key="exp-desc-5">Designs cativantes para anúncios e feeds prontos para atrair vendas.</p>
-                        </div>
-                    </div>
-
-                    <div class="exp-item">
-                        <div class="exp-bullet"></div>
-                        <div class="exp-details">
-                            <h3 class="editable" data-key="exp-title-6">Automação de Conteúdo</h3>
-                            <p class="editable" data-key="exp-desc-6">Escala na produção de artes e copys com identidade de marca unificada.</p>
-                        </div>
-                    </div>
-                </div>
+                <p class="hero-small-text"><i class="fa-solid fa-check"></i> Projetos sob medida &bull; Visual profissional &bull; Atendimento direto pelo WhatsApp</p>
             </div>
             
-            <!-- Imagem do Profissional à Direita -->
-            <div class="experience-portrait-wrapper">
+            <!-- Hero Image Wrapper -->
+            <div class="hero-image-wrapper">
                 <div class="portrait-glow"></div>
-                <div class="portrait-card">
-                    <img src="assets/avatar.png" alt="Especialista em IA" class="portrait-img" id="avatarImg">
-                    <div class="portrait-tag">
-                        <h4 class="editable" data-key="avatar-name">Especialista em IA &amp; Web</h4>
-                        <p class="editable" data-key="avatar-role">Produtor Criativo</p>
-                    </div>
-                    <button class="change-avatar-btn" id="changeAvatarBtn" title="Alterar Foto"><i class="fa-solid fa-camera"></i></button>
+                <div class="hero-image-card card-glass">
+                    <img src="assets/avatar.png" alt="Especialista no Computador" class="hero-img">
+                    <!-- Floating Tech Icons -->
+                    <div class="tech-icon icon-1"><i class="fa-solid fa-robot"></i></div>
+                    <div class="tech-icon icon-2"><i class="fa-solid fa-code"></i></div>
+                    <div class="tech-icon icon-3"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Portfolio Section with Dynamic Tabs -->
-    <section id="portfolio" class="portfolio-section">
+    <!-- SESSÃO 2: AUTORIDADE / CONFIANÇA -->
+    <section id="authority" class="authority-section">
+        <div class="container text-center">
+            <h2 class="section-title">Tecnologia e criatividade para transformar sua presença digital</h2>
+            <p class="section-subtitle">Unimos inteligência artificial, design e estratégia para criar materiais que deixam sua marca mais bonita, mais confiável e mais preparada para vender.</p>
+            
+            <div class="authority-grid">
+                <div class="authority-card card-glass">
+                    <div class="authority-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Visual premium</h3>
+                    <p>Sua marca com aparência mais profissional e moderna.</p>
+                </div>
+                <div class="authority-card card-glass">
+                    <div class="authority-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Foco em conversão</h3>
+                    <p>Criamos pensando em gerar interesse, contato e venda.</p>
+                </div>
+                <div class="authority-card card-glass">
+                    <div class="authority-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Soluções práticas</h3>
+                    <p>Você recebe materiais prontos para divulgar e usar no seu negócio.</p>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20falar%20com%20um%20especialista%20sobre%20as%20soluções%20para%20minha%20empresa." target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Falar com especialista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SESSÃO 3: SERVIÇOS -->
+    <section id="services" class="services-section">
         <div class="container">
             <div class="section-header text-center">
-                <span class="badge neon-yellow-text editable" data-key="portfolio-badge">Nosso Trabalho</span>
-                <h2 class="section-title editable" data-key="portfolio-title">Galeria de Projetos Criativos</h2>
-                <p class="section-subtitle editable" data-key="portfolio-subtitle">Explore os resultados reais desenvolvidos com ferramentas e tecnologias de IA.</p>
+                <span class="badge neon-yellow-text">SERVIÇOS</span>
+                <h2 class="section-title">Escolha o que sua marca precisa agora</h2>
+                <p class="section-subtitle">Soluções diretas para melhorar sua imagem, divulgar seus serviços e atrair mais clientes.</p>
             </div>
-
-            <!-- Abas do Portfólio -->
-            <div class="portfolio-tabs">
-                <button class="tab-btn active" data-tab="all">Todos</button>
-                <button class="tab-btn" data-tab="videos">Vídeos com IA</button>
-                <button class="tab-btn" data-tab="apps">Web Apps</button>
-                <button class="tab-btn" data-tab="sites">Sites</button>
-                <button class="tab-btn" data-tab="design">Fotos &amp; Banners</button>
-            </div>
-
-            <!-- Grid do Portfólio / Carrossel (Preenchido dinamicamente pelo script.js) -->
-            <div class="portfolio-carousel-wrapper">
-                <button class="carousel-control prev-btn" id="carouselPrevBtn" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card card-glass">
+                    <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+                    <h3>Vídeos com IA</h3>
+                    <p>Comerciais, vídeos para Reels, avatares, campanhas e conteúdos criativos para sua marca se destacar nas redes sociais.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Vídeos%20com%20IA." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero vídeos com IA</a>
+                </div>
                 
-                <div class="portfolio-grid" id="portfolioGrid"><div class="portfolio-item card-glass" data-category="videos" data-id="video-1">
-                        
-                    <div class="media-container video-container">
-                        <video class="portfolio-video" muted="" loop="" playsinline="" preload="metadata">
-                            <source src="https://res.cloudinary.com/dmxeqe939/video/upload/v1782391251/grok-video-a6d7bd4b-688e-4b51-9fc5-d597481d8d68_ulvspq.mp4#t=0.001" type="video/mp4">
-                            Seu navegador não suporta vídeos HTML5.
-                        </video>
-                        <div class="video-overlay">
-                            <button class="play-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('video-1')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('video-1')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                <!-- Card 2 -->
+                <div class="service-card card-glass">
+                    <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Mini Sites e Páginas de Venda</h3>
+                    <p>Páginas modernas, rápidas e persuasivas para apresentar seus produtos ou serviços e levar o cliente direto para o WhatsApp.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Mini%20Sites%20e%20Páginas." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero meu mini site</a>
                 </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Vídeo com IA</span>
-                            <h3>Comercial Futurista</h3>
-                            <p>Vídeo promocional cinematográfico com renderização 3D e inteligência artificial.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="videos" data-id="video-2">
-                        
-                    <div class="media-container video-container">
-                        <video class="portfolio-video" muted="" loop="" playsinline="" preload="metadata">
-                            <source src="https://res.cloudinary.com/dmxeqe939/video/upload/v1782391251/grok-video-a6d7bd4b-688e-4b51-9fc5-d597481d8d68_ulvspq.mp4#t=0.001" type="video/mp4">
-                            Seu navegador não suporta vídeos HTML5.
-                        </video>
-                        <div class="video-overlay">
-                            <button class="play-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('video-2')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('video-2')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Vídeo com IA</span>
-                            <h3>Campanha Cyberpunk</h3>
-                            <p>Clipe promocional em estilo cyberpunk com fusão de áudio e imagem inteligente.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="videos" data-id="video-3">
-                        
-                    <div class="media-container video-container">
-                        <video class="portfolio-video" muted="" loop="" playsinline="" preload="metadata">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-man-working-in-front-of-futuristic-computer-screens-43034-large.mp4#t=0.001" type="video/mp4">
-                            Seu navegador não suporta vídeos HTML5.
-                        </video>
-                        <div class="video-overlay">
-                            <button class="play-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('video-3')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('video-3')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Vídeo com IA</span>
-                            <h3>Avatar Corporativo</h3>
-                            <p>Vídeo explicativo utilizando avatar hiper-realista dublado por IA.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="apps" data-id="app-1">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/app_mockup1.png" alt="Gerador de Copys Automáticas" class="portfolio-img">
-                        <div class="image-overlay">
-                            <a href="#" target="_self" class="view-details-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Demo</a>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('app-1')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('app-1')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Web App com IA</span>
-                            <h3>Gerador de Copys Automáticas</h3>
-                            <p>Plataforma SaaS web de escrita criativa para anúncios baseada em GPT-4.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="apps" data-id="app-2">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/app_mockup2.png" alt="Atendente WhatsApp IA" class="portfolio-img">
-                        <div class="image-overlay">
-                            <a href="#" target="_self" class="view-details-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Demo</a>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('app-2')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('app-2')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Web App com IA</span>
-                            <h3>Atendente WhatsApp IA</h3>
-                            <p>Painel inteligente integrado com LLM para agendar consultas automaticamente.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="sites" data-id="site-1">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/site_mockup1.png" alt="Site Dr. Rodrigo Alencar" class="portfolio-img">
-                        <div class="image-overlay">
-                            <a href="#" target="_self" class="view-details-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Demo</a>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('site-1')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('site-1')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Landing Page</span>
-                            <h3>Site Dr. Rodrigo Alencar</h3>
-                            <p>Website premium institucional para escritório de advocacia corporativa.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="sites" data-id="site-2">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/site_mockup2.png" alt="Site Dra. Joana" class="portfolio-img">
-                        <div class="image-overlay">
-                            <a href="https://marvelous-torrone-04bc67.netlify.app/" target="_blank" class="view-details-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Demo</a>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('site-2')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('site-2')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Landing Page</span>
-                            <h3>Site Dra. Joana</h3>
-                            <p>Website moderno, minimalista e interativo focado na conversão de pacientes.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="design" data-id="design-1">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/photo_portrait1.png" alt="Retrato Executivo IA" class="portfolio-img">
-                        <div class="image-overlay">
-                            <button class="zoom-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('design-1')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('design-1')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Foto / Banner</span>
-                            <h3>Retrato Executivo IA</h3>
-                            <p>Foto profissional de alta resolução gerada inteiramente a partir de fotos comuns.</p>
-                        </div>
-                    </div><div class="portfolio-item card-glass" data-category="design" data-id="design-2">
-                        
-                    <div class="media-container image-container">
-                        <img src="assets/banner_flyer1.png" alt="Anúncio Social Media" class="portfolio-img">
-                        <div class="image-overlay">
-                            <button class="zoom-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-                        </div>
-                    </div>
-                        
-                        
-                <div class="card-admin-actions">
-                    <button class="card-admin-btn card-edit-btn" onclick="window.editPortfolioItem('design-2')" title="Editar Card">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="card-admin-btn card-delete-btn" onclick="window.deletePortfolioItem('design-2')" title="Excluir Card">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                    
-                        <div class="card-info">
-                            <span class="card-category">Foto / Banner</span>
-                            <h3>Anúncio Social Media</h3>
-                            <p>Arte publicitária de alta conversão para campanha de marketing de produto.</p>
-                        </div>
-                    </div></div>
                 
-                <button class="carousel-control next-btn" id="carouselNextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-
-            <!-- CTA WhatsApp bar abaixo do carrossel -->
-            <div class="portfolio-cta-container">
-                <a href="https://wa.me/5511999999999" target="_blank" class="portfolio-whatsapp-cta" id="portfolioWhatsappCta">
-                    <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp para fazer seu orçamento
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Modal / Lightbox para exibição do vídeo completo em tela cheia -->
-    <div class="video-lightbox" id="videoLightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
-            <video class="lightbox-video" id="lightboxVideo" controls="" autoplay="">
-                <source src="" type="video/mp4">
-                Seu navegador não suporta este vídeo.
-            </video>
-        </div>
-    </div>
-
-    <!-- Image Modal / Lightbox para fotos -->
-    <div class="image-lightbox" id="imageLightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="imageLightboxClose"><i class="fa-solid fa-xmark"></i></button>
-            <img src="" alt="Imagem Expandida" class="lightbox-img" id="lightboxImg">
-        </div>
-    </div>
-
-    <!-- Contact & CTA Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-card card-glass">
-                <div class="contact-glow"></div>
-                <div class="contact-content">
-                    <span class="badge neon-yellow-text editable" data-key="contact-badge">Iniciar Projeto</span>
-                    <h2 class="contact-title editable" data-key="contact-title">Pronto para dominar o mercado com Inteligência Artificial?</h2>
-                    <p class="contact-description editable" data-key="contact-description">Envie uma mensagem e fale diretamente sobre sua necessidade. Respondemos rápido e criamos uma demonstração exclusiva.</p>
-                    
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <input type="text" placeholder="Seu Nome" required="" class="form-input">
-                            <input type="email" placeholder="Seu E-mail" required="" class="form-input">
-                        </div>
-                        <select class="form-input form-select" required="">
-                            <option value="" disabled="" selected="">Qual serviço você precisa?</option>
-                            <option value="video">Vídeos com IA</option>
-                            <option value="app">Web App Interativo</option>
-                            <option value="site">Website / Landing Page</option>
-                            <option value="photo">Foto Profissional / Banners</option>
-                            <option value="outro">Outro Projeto Personalizado</option>
-                        </select>
-                        <textarea placeholder="Fale brevemente sobre o seu projeto..." required="" class="form-input form-textarea"></textarea>
-                        
-                        <button type="submit" class="btn btn-primary btn-block">Enviar Pedido de Orçamento</button>
-                    </form>
+                <!-- Card 3 -->
+                <div class="service-card card-glass">
+                    <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h3>Artes, Banners e Imagens Profissionais</h3>
+                    <p>Criativos para Instagram, anúncios, campanhas, fotos profissionais e materiais visuais para deixar sua marca mais forte.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Artes%20e%20Design." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero artes profissionais</a>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="service-card card-glass">
+                    <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Ferramentas Inteligentes para Empresas</h3>
+                    <p>Aplicações simples, formulários, diagnósticos, automações e soluções personalizadas para facilitar sua rotina e atendimento.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Ferramentas%20Inteligentes." target="_blank" class="btn btn-outline btn-block"><i class="fa-brands fa-whatsapp"></i> Quero uma solução personalizada</a>
                 </div>
             </div>
+            
+            <!-- Chamada Final -->
+            <div class="final-cta text-center card-glass">
+                <h2>Vamos deixar sua marca mais profissional?</h2>
+                <p>Me chame no WhatsApp, me conte o que você precisa e eu te ajudo a escolher a melhor solução para sua empresa.</p>
+                <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento!" target="_blank" class="btn btn-primary btn-large pulse-animation"><i class="fa-brands fa-whatsapp"></i> Solicitar orçamento agora</a>
+            </div>
+            
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
-            <p>© 2026 AI Creative Studio. Todos os direitos reservados.</p>
-            <div class="footer-socials">
-                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://wa.me/5511999999999" target="_blank" aria-label="WhatsApp" id="whatsappFooterLink"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
+        <div class="container text-center">
+            <p>&copy; 2024 R IA Studio - Digital & AI Solutions. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- ==========================================
-       PAINEL ADMINISTRATIVO (ADMIN PANEL)
-       ========================================== -->
-    
-    <!-- Botão de Engrenagem Flutuante para Ativação -->
-    <button class="admin-toggle-btn" id="adminToggleBtn" title="Ativar Modo Admin" style="display: none !important; background: rgb(255, 230, 0); color: rgb(0, 0, 0);">
-        <i class="fa-solid fa-gear"></i>
-    </button>
-
-    <!-- Barra de Controle do Administrador -->
-    <div class="admin-controls-panel" id="adminControlsPanel">
-        <div class="admin-panel-brand">
-            <i class="fa-solid fa-screwdriver-wrench"></i> Modo Editor
-        </div>
-        <div class="admin-panel-whatsapp-config">
-            <label for="adminWhatsappPhone"><i class="fa-brands fa-whatsapp"></i> Whats (Apenas números):</label>
-            <input type="text" id="adminWhatsappPhone" placeholder="Ex: 5511999999999">
-        </div>
-        <div class="admin-panel-buttons">
-            <button class="admin-btn admin-btn-primary" id="addNewItemBtn">
-                <i class="fa-solid fa-plus"></i> Novo Vídeo/Card
-            </button>
-            <button class="admin-btn admin-btn-success" id="exportHtmlBtn">
-                <i class="fa-solid fa-download"></i> Exportar HTML Final
-            </button>
-            <button class="admin-btn admin-btn-danger" id="exitAdminBtn">
-                <i class="fa-solid fa-xmark"></i> Sair
-            </button>
-        </div>
-        <div class="admin-panel-tip">
-            Dica: Dê dois cliques em qualquer texto com borda amarela para editá-lo diretamente na tela.
-        </div>
-    </div>
-
-    <!-- Modal para Adicionar/Editar Item do Portfólio -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-modal-content card-glass">
-            <button class="admin-modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <h3 id="modalTitle">Editar Item do Portfólio</h3>
-            <form id="portfolioItemForm">
-                <input type="hidden" id="editItemId" value="site-2">
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemTitle">Título do Card</label>
-                    <input type="text" id="itemTitle" required="" placeholder="Ex: Comercial de Perfume com IA" class="form-input">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemCategory">Aba/Categoria</label>
-                    <select id="itemCategory" required="" class="form-input form-select">
-                        <option value="videos">Vídeos com IA</option>
-                        <option value="apps">Web Apps</option>
-                        <option value="sites">Sites</option>
-                        <option value="design">Fotos &amp; Banners</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemMediaType">Tipo de Mídia</label>
-                    <select id="itemMediaType" required="" class="form-input form-select">
-                        <option value="video">Vídeo (.mp4 ou URL de vídeo)</option>
-                        <option value="image">Imagem / Foto (Mockup ou Design)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemMediaUrl">Link de Mídia (URL ou arquivo local)</label>
-                    <input type="text" id="itemMediaUrl" required="" placeholder="Ex: https://caminho.com/video.mp4 ou assets/video.mp4" class="form-input">
-                    <span class="form-tip">Cole o link direto do vídeo/imagem ou o nome do arquivo que está na pasta assets (ex: assets/video.mp4).</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemExternalUrl">Link do Projeto / Demo (Opcional)</label>
-                    <input type="text" id="itemExternalUrl" placeholder="Ex: https://meusite.com.br" class="form-input">
-                    <span class="form-tip">Use apenas se quiser que o cliente seja direcionado para outro site ao clicar (ideal para Apps e Sites).</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="itemDescription">Descrição Curta</label>
-                    <textarea id="itemDescription" required="" placeholder="Explique brevemente o projeto..." class="form-input form-textarea"></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block" id="saveItemBtn">Salvar no Portfólio</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal para Alterar Imagens/Avatar -->
-    <div class="admin-modal" id="avatarModal">
-        <div class="admin-modal-content card-glass">
-            <button class="admin-modal-close" id="avatarModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <h3>Alterar Imagem do Avatar</h3>
-            <form id="avatarForm">
-                <div class="form-group">
-                    <label class="form-label" for="avatarUrl">Link da Imagem / Caminho Local</label>
-                    <input type="text" id="avatarUrl" required="" placeholder="Ex: assets/avatar.png ou link da web" class="form-input">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Atualizar Imagem</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Custom JS -->
     <script src="script.js"></script>
-
-
-<script id="portfolioDataScript" type="application/json">[{"id":"video-1","type":"video","category":"videos","title":"Comercial Futurista","description":"Vídeo promocional cinematográfico com renderização 3D e inteligência artificial.","mediaUrl":"https://res.cloudinary.com/dmxeqe939/video/upload/v1782391251/grok-video-a6d7bd4b-688e-4b51-9fc5-d597481d8d68_ulvspq.mp4","externalUrl":""},{"id":"video-2","type":"video","category":"videos","title":"Campanha Cyberpunk","description":"Clipe promocional em estilo cyberpunk com fusão de áudio e imagem inteligente.","mediaUrl":"https://res.cloudinary.com/dmxeqe939/video/upload/v1782391251/grok-video-a6d7bd4b-688e-4b51-9fc5-d597481d8d68_ulvspq.mp4","externalUrl":""},{"id":"video-3","type":"video","category":"videos","title":"Avatar Corporativo","description":"Vídeo explicativo utilizando avatar hiper-realista dublado por IA.","mediaUrl":"https://assets.mixkit.co/videos/preview/mixkit-man-working-in-front-of-futuristic-computer-screens-43034-large.mp4"},{"id":"app-1","type":"image","category":"apps","title":"Gerador de Copys Automáticas","description":"Plataforma SaaS web de escrita criativa para anúncios baseada em GPT-4.","mediaUrl":"assets/app_mockup1.png"},{"id":"app-2","type":"image","category":"apps","title":"Atendente WhatsApp IA","description":"Painel inteligente integrado com LLM para agendar consultas automaticamente.","mediaUrl":"assets/app_mockup2.png"},{"id":"site-1","type":"image","category":"sites","title":"Site Dr. Rodrigo Alencar","description":"Website premium institucional para escritório de advocacia corporativa.","mediaUrl":"assets/site_mockup1.png"},{"id":"site-2","type":"image","category":"sites","title":"Site Dra. Joana","description":"Website moderno, minimalista e interativo focado na conversão de pacientes.","mediaUrl":"assets/site_mockup2.png","externalUrl":"https://marvelous-torrone-04bc67.netlify.app/"},{"id":"design-1","type":"image","category":"design","title":"Retrato Executivo IA","description":"Foto profissional de alta resolução gerada inteiramente a partir de fotos comuns.","mediaUrl":"assets/photo_portrait1.png"},{"id":"design-2","type":"image","category":"design","title":"Anúncio Social Media","description":"Arte publicitária de alta conversão para campanha de marketing de produto.","mediaUrl":"assets/banner_flyer1.png"}]</script></body>
+</body>
 </html>
