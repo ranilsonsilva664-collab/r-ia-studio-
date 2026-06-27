@@ -124,6 +124,29 @@
                 
                 <button class="carousel-control next-btn" id="carouselNextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
+        </div>
+    </section>
+
+    <!-- SESSÃO 4: DEPOIMENTOS -->
+    <section id="testimonials" class="portfolio-section" style="padding-top: 50px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="badge neon-yellow-text editable" data-key="testi-badge">PESSOAS QUE JÁ FIZERAM SERVIÇO COM A GENTE</span>
+                <h2 class="section-title editable" data-key="testi-title">O que dizem sobre nós</h2>
+                <p class="section-subtitle editable" data-key="testi-subtitle">Histórias de sucesso de quem confiou na nossa tecnologia.</p>
+            </div>
+
+            <!-- Grid do Carrossel de Depoimentos (Preenchido dinamicamente) -->
+            <div class="portfolio-carousel-wrapper">
+                <button class="carousel-control prev-btn" id="testiPrevBtn" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="portfolio-grid" id="testimonialsGrid">
+                    <!-- Cards will be injected by script.js -->
+                </div>
+                
+                <button class="carousel-control next-btn" id="testiNextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            
             
             <!-- Chamada Final -->
             <div class="final-cta text-center card-glass">
@@ -179,7 +202,10 @@
         </div>
         <div class="admin-panel-buttons">
             <button class="admin-btn admin-btn-primary" id="addNewItemBtn">
-                <i class="fa-solid fa-plus"></i> Novo Vídeo/Card
+                <i class="fa-solid fa-plus"></i> Novo Projeto
+            </button>
+            <button class="admin-btn admin-btn-primary" id="addNewTestiBtn">
+                <i class="fa-solid fa-plus"></i> Novo Depoimento
             </button>
             <button class="admin-btn admin-btn-success" id="exportHtmlBtn">
                 <i class="fa-solid fa-download"></i> Exportar HTML Final
@@ -197,18 +223,19 @@
     <div class="admin-modal" id="adminModal">
         <div class="admin-modal-content card-glass">
             <button class="admin-modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <h3 id="modalTitle">Editar Item do Portfólio</h3>
+            <h3 id="modalTitle">Editar Item</h3>
             <form id="portfolioItemForm">
                 <input type="hidden" id="editItemId" value="">
+                <input type="hidden" id="itemSectionType" value="portfolio">
                 
                 <div class="form-group">
-                    <label class="form-label" for="itemTitle">Título do Card</label>
-                    <input type="text" id="itemTitle" required placeholder="Ex: Comercial de Perfume com IA" class="form-input">
+                    <label class="form-label" for="itemTitle">Título do Card / Nome do Cliente</label>
+                    <input type="text" id="itemTitle" required placeholder="Ex: João da Silva ou Comercial de Perfume" class="form-input">
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="itemCategory">Aba/Categoria</label>
-                    <select id="itemCategory" required class="form-input form-select">
+                <div class="form-group" id="categoryGroup">
+                    <label class="form-label" for="itemCategory">Aba/Categoria (Apenas para Projetos)</label>
+                    <select id="itemCategory" class="form-input form-select">
                         <option value="videos">Vídeos com IA</option>
                         <option value="apps">Web Apps</option>
                         <option value="sites">Sites</option>
@@ -264,5 +291,6 @@
     <!-- Custom JS -->
     <script src="script.js"></script>
     <script id="portfolioDataScript" type="application/json">[]</script>
+    <script id="testimonialsDataScript" type="application/json">[]</script>
 </body>
 </html>

@@ -103,6 +103,26 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('ai_portfolio_items', JSON.stringify(portfolioData));
     };
 
+    // Load or initialize testimonials
+    let testimonialsData = JSON.parse(localStorage.getItem('ai_testimonials_items')) || [];
+    
+    // ATTEMPT TO LOAD BAKED-IN TESTIMONIALS
+    const testiDataScript = document.getElementById('testimonialsDataScript');
+    if (testiDataScript) {
+        try {
+            const bakedTesti = JSON.parse(testiDataScript.textContent);
+            if (Array.isArray(bakedTesti) && bakedTesti.length > 0) {
+                testimonialsData = bakedTesti;
+            }
+        } catch(e) {}
+    }
+    
+    if (!Array.isArray(testimonialsData)) testimonialsData = [];
+    
+    const saveTestimonialsToStorage = () => {
+        localStorage.setItem('ai_testimonials_items', JSON.stringify(testimonialsData));
+    };
+
     /* ==========================================
        WHATSAPP PHONE NUMBER MANAGER
        ========================================== */
@@ -236,12 +256,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getCategoryLabel = (cat) => {
         const labels = {
-            'videos': 'V├¡deo com IA',
+            'videos': 'Vídeo com IA',
             'apps': 'Web App com IA',
             'sites': 'Landing Page',
             'design': 'Foto / Banner'
         };
         return labels[cat] || cat;
+    };
+
+    /* ==========================================
+       RENDER TESTIMONIALS DYNAMICALLY
+       ========================================== */
+    const testimonialsGrid = document.getElementById('testimonialsGrid');
+    
+    const renderTestimonials = () => {
+        if (!testimonialsGrid) return;
+        testimonialsGrid.innerHTML = '';
+        
+        testimonialsData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'portfolio-item card-glass';
+            card.setAttribute('data-id', item.id);
+            
+            let mediaHtml = '';
+            if (item.type === 'video') {
+                mediaHtml = `
+                    <div class="media-container video-container">
+                        <video class="portfolio-video" muted loop playsinline preload="metadata">
+                            <source src="${item.mediaUrl.includes('#t=') ? item.mediaUrl : item.mediaUrl + '#t=0.001'}" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                        <div class="video-overlay">
+                            <button class="play-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                mediaHtml = `
+                    <div class="media-container image-container">
+                        <img src="${item.mediaUrl}" alt="${item.title}" class="portfolio-img">
+                        <div class="image-overlay">
+                            <button class="zoom-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const adminActionsHtml = `
+                <div class="card-admin-actions">
+                    <button class="card-admin-btn card-edit-btn" onclick="window.editTestimonialItem('${item.id}')" title="Editar Card">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="card-admin-btn card-delete-btn" onclick="window.deleteTestimonialItem('${item.id}')" title="Excluir Card">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            card.innerHTML = `
+                ${mediaHtml}
+                ${adminActionsHtml}
+                <div class="card-info">
+                    <span class="card-category">Depoimento</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `;
+            
+            testimonialsGrid.appendChild(card);
+        });
+
+        // Rebind video previews and lightbox event listeners
+        bindPortfolioEvents();
+    };
+
+    const setupTestimonialsCarousel = () => {
+        const grid = document.getElementById('testimonialsGrid');
+        const prevBtn = document.getElementById('testiPrevBtn');
+        const nextBtn = document.getElementById('testiNextBtn');
+
+        if (grid && prevBtn && nextBtn) {
+            const scrollAmount = 330;
+            prevBtn.addEventListener('click', () => {
+                grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+            nextBtn.addEventListener('click', () => {
+                grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+        }
     };
 
     /* ==========================================
@@ -522,8 +624,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open Modal to Add
     if (addNewItemBtn) {
         addNewItemBtn.addEventListener('click', () => {
-            document.getElementById('modalTitle').textContent = 'Adicionar Item ao Portf├│lio';
+            document.getElementById('modalTitle').textContent = 'Adicionar Item ao Portfólio';
             document.getElementById('editItemId').value = '';
+            document.getElementById('itemSectionType').value = 'portfolio';
+            document.getElementById('categoryGroup').style.display = 'block';
+            portfolioItemForm.reset();
+            adminModal.classList.add('open');
+        });
+    }
+
+    // Open Modal to Add Testimonial Item
+    const addNewTestiBtn = document.getElementById('addNewTestiBtn');
+    if (addNewTestiBtn) {
+        addNewTestiBtn.addEventListener('click', () => {
+            document.getElementById('modalTitle').textContent = 'Adicionar Novo Depoimento';
+            document.getElementById('editItemId').value = '';
+            document.getElementById('itemSectionType').value = 'testimonial';
+            document.getElementById('categoryGroup').style.display = 'none';
             portfolioItemForm.reset();
             adminModal.classList.add('open');
         });
@@ -538,8 +655,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = portfolioData.find(i => i.id === id);
         if (!item) return;
         
-        document.getElementById('modalTitle').textContent = 'Editar Item do Portf├│lio';
+        document.getElementById('modalTitle').textContent = 'Editar Item do Portfólio';
         document.getElementById('editItemId').value = item.id;
+        document.getElementById('itemSectionType').value = 'portfolio';
+        document.getElementById('categoryGroup').style.display = 'block';
         document.getElementById('itemTitle').value = item.title;
         document.getElementById('itemCategory').value = item.category;
         document.getElementById('itemMediaType').value = item.type;
@@ -547,6 +666,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('itemDescription').value = item.description;
         const extUrlEl = document.getElementById('itemExternalUrl');
         if (extUrlEl) extUrlEl.value = item.externalUrl || '';
+        
+        adminModal.classList.add('open');
+    };
+
+    // Edit Testimonial Item function
+    window.editTestimonialItem = (id) => {
+        const item = testimonialsData.find(i => i.id === id);
+        if (!item) return;
+        
+        document.getElementById('modalTitle').textContent = 'Editar Depoimento';
+        document.getElementById('editItemId').value = item.id;
+        document.getElementById('itemSectionType').value = 'testimonial';
+        document.getElementById('categoryGroup').style.display = 'none';
+        document.getElementById('itemTitle').value = item.title;
+        document.getElementById('itemMediaType').value = item.type;
+        document.getElementById('itemMediaUrl').value = item.mediaUrl;
+        document.getElementById('itemDescription').value = item.description;
         
         adminModal.classList.add('open');
     };
@@ -560,34 +696,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Delete Testimonial Item function
+    window.deleteTestimonialItem = (id) => {
+        if (confirm('Tem certeza que deseja remover este depoimento?')) {
+            testimonialsData = testimonialsData.filter(i => i.id !== id);
+            saveTestimonialsToStorage();
+            renderTestimonials();
+        }
+    };
+
     // Form Submission (Add or Edit)
     if (portfolioItemForm) {
         portfolioItemForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
+            const sectionType = document.getElementById('itemSectionType').value;
             const id = document.getElementById('editItemId').value;
             const title = document.getElementById('itemTitle').value;
-            const category = document.getElementById('itemCategory').value;
             const type = document.getElementById('itemMediaType').value;
             const mediaUrl = document.getElementById('itemMediaUrl').value;
             const description = document.getElementById('itemDescription').value;
-            const extUrlEl = document.getElementById('itemExternalUrl');
-            const externalUrl = extUrlEl ? extUrlEl.value : '';
             
-            if (id) {
-                // Edit existing
-                const index = portfolioData.findIndex(item => item.id === id);
-                if (index !== -1) {
-                    portfolioData[index] = { id, type, category, title, description, mediaUrl, externalUrl };
+            if (sectionType === 'testimonial') {
+                if (id) {
+                    const index = testimonialsData.findIndex(item => item.id === id);
+                    if (index !== -1) testimonialsData[index] = { id, type, title, description, mediaUrl };
+                } else {
+                    const newId = 'testi_' + Date.now();
+                    testimonialsData.push({ id: newId, type, title, description, mediaUrl });
                 }
+                saveTestimonialsToStorage();
+                renderTestimonials();
             } else {
-                // Add new
-                const newId = 'item_' + Date.now();
-                portfolioData.push({ id: newId, type, category, title, description, mediaUrl, externalUrl });
+                const category = document.getElementById('itemCategory').value;
+                const extUrlEl = document.getElementById('itemExternalUrl');
+                const externalUrl = extUrlEl ? extUrlEl.value : '';
+                
+                if (id) {
+                    const index = portfolioData.findIndex(item => item.id === id);
+                    if (index !== -1) portfolioData[index] = { id, type, category, title, description, mediaUrl, externalUrl };
+                } else {
+                    const newId = 'item_' + Date.now();
+                    portfolioData.push({ id: newId, type, category, title, description, mediaUrl, externalUrl });
+                }
+                savePortfolioToStorage();
+                renderPortfolio();
             }
             
-            savePortfolioToStorage();
-            renderPortfolio();
             adminModal.classList.remove('open');
         });
     }
@@ -742,6 +897,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             dataScriptClone.textContent = JSON.stringify(portfolioData);
 
+            // Bake the testimonials grid items directly into HTML
+            const testiGridClone = clone.querySelector('#testimonialsGrid');
+            if (testiGridClone) {
+                testiGridClone.innerHTML = '';
+                
+                testimonialsData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'portfolio-item card-glass';
+                    card.setAttribute('data-id', item.id);
+                    
+                    let mediaHtml = '';
+                    if (item.type === 'video') {
+                        mediaHtml = `
+                    <div class="media-container video-container">
+                        <video class="portfolio-video" muted loop playsinline preload="metadata">
+                            <source src="${item.mediaUrl.includes('#t=') ? item.mediaUrl : item.mediaUrl + '#t=0.001'}" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                        <div class="video-overlay">
+                            <button class="play-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                    </div>
+                        `;
+                    } else {
+                        mediaHtml = `
+                    <div class="media-container image-container">
+                        <img src="${item.mediaUrl}" alt="${item.title}" class="portfolio-img">
+                        <div class="image-overlay">
+                            <button class="zoom-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        </div>
+                    </div>
+                        `;
+                    }
+                    
+                    const adminActionsHtml = `
+                <div class="card-admin-actions">
+                    <button class="card-admin-btn card-edit-btn" onclick="window.editTestimonialItem('${item.id}')" title="Editar Card">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="card-admin-btn card-delete-btn" onclick="window.deleteTestimonialItem('${item.id}')" title="Excluir Card">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                    `;
+                    
+                    card.innerHTML = `
+                        ${mediaHtml}
+                        ${adminActionsHtml}
+                        <div class="card-info">
+                            <span class="card-category">Depoimento</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    testiGridClone.appendChild(card);
+                });
+            }
+            
+            // Inject testimonials data JSON into the clone
+            let testiDataScriptClone = clone.querySelector('#testimonialsDataScript');
+            if (!testiDataScriptClone) {
+                testiDataScriptClone = document.createElement('script');
+                testiDataScriptClone.id = 'testimonialsDataScript';
+                testiDataScriptClone.type = 'application/json';
+                clone.querySelector('body').appendChild(testiDataScriptClone);
+            }
+            testiDataScriptClone.textContent = JSON.stringify(testimonialsData);
+
             // Build raw HTML string
             const htmlString = '<!DOCTYPE html>\n<html lang="pt-BR">\n' + clone.innerHTML + '\n</html>';
             
@@ -801,6 +1024,8 @@ document.addEventListener('DOMContentLoaded', () => {
        INITIAL RENDER & ANIMATION ON SCROLL
        ========================================= */
     renderPortfolio();
+    renderTestimonials();
+    setupTestimonialsCarousel();
 
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
