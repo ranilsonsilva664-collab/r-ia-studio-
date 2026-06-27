@@ -2436,3 +2436,12 @@ body.admin-mode-active .change-avatar-btn {
     border-color: var(--color-primary);
     box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
+/* ==========================================
+   EXTRA SMALL DEVICES
+   ========================================== */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+        word-break: break-word;
+    }
+}
