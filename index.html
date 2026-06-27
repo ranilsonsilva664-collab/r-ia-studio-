@@ -207,7 +207,7 @@
             <button class="admin-btn admin-btn-primary" id="addNewTestiBtn">
                 <i class="fa-solid fa-plus"></i> Novo Depoimento
             </button>
-            <button class="admin-btn admin-btn-success" id="exportHtmlBtn">
+            <button class="admin-btn admin-btn-success" id="exportHtmlBtn" style="display: none;">
                 <i class="fa-solid fa-download"></i> Exportar HTML Final
             </button>
             <button class="admin-btn admin-btn-danger" id="exitAdminBtn">
@@ -288,9 +288,11 @@
         </div>
     </div>
 
+    <!-- Firebase SDK Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
     <!-- Custom JS -->
     <script src="script.js"></script>
-    <script id="portfolioDataScript" type="application/json">[]</script>
-    <script id="testimonialsDataScript" type="application/json">[]</script>
 </body>
 </html>

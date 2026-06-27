@@ -1,6 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================
+       FIREBASE INITIALIZATION
+       ========================================== */
+    const firebaseConfig = {
+      apiKey: "AIzaSyACPDy1FhYgkNQdBfCfAe26hXpPFRojCf4",
+      authDomain: "im-zap-atom.firebaseapp.com",
+      projectId: "im-zap-atom",
+      storageBucket: "im-zap-atom.firebasestorage.app",
+      messagingSenderId: "208800360224",
+      appId: "1:208800360224:web:7e0b625b73976008e2d945"
+    };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    /* ==========================================
        DATA STRUCTURES (DEFAULT DATA)
        ========================================== */
     const defaultPortfolio = [
@@ -82,46 +99,48 @@ document.addEventListener('DOMContentLoaded', () => {
     let portfolioData = JSON.parse(localStorage.getItem('ai_portfolio_items'));
     let fallbackPortfolio = defaultPortfolio;
 
-    // ATTEMPT TO LOAD BAKED-IN DATA FROM HTML EXPORT
-    const dataScript = document.getElementById('portfolioDataScript');
-    if (dataScript) {
-        try {
-            const bakedData = JSON.parse(dataScript.textContent);
-            if (Array.isArray(bakedData) && bakedData.length > 0) {
-                fallbackPortfolio = bakedData;
-            }
-        } catch(e) {}
-    }
-
     if (!portfolioData || !Array.isArray(portfolioData) || portfolioData.length === 0) {
         portfolioData = fallbackPortfolio;
         localStorage.setItem('ai_portfolio_items', JSON.stringify(fallbackPortfolio));
     }
     
-    // Save to localStorage helper
-    const savePortfolioToStorage = () => {
+    // Save to localStorage & Firebase
+    const savePortfolioToStorage = async () => {
         localStorage.setItem('ai_portfolio_items', JSON.stringify(portfolioData));
+        try {
+            await db.collection('r_ia_studio_portfolio').doc('data').set({ items: portfolioData });
+        } catch(e) { console.error("Firebase error", e); }
     };
+
+    // Fetch live portfolio
+    db.collection('r_ia_studio_portfolio').doc('data').get().then(doc => {
+        if (doc.exists && doc.data().items) {
+            portfolioData = doc.data().items;
+            localStorage.setItem('ai_portfolio_items', JSON.stringify(portfolioData));
+            renderPortfolio();
+        }
+    }).catch(e => console.error(e));
 
     // Load or initialize testimonials
     let testimonialsData = JSON.parse(localStorage.getItem('ai_testimonials_items')) || [];
-    
-    // ATTEMPT TO LOAD BAKED-IN TESTIMONIALS
-    const testiDataScript = document.getElementById('testimonialsDataScript');
-    if (testiDataScript) {
-        try {
-            const bakedTesti = JSON.parse(testiDataScript.textContent);
-            if (Array.isArray(bakedTesti) && bakedTesti.length > 0) {
-                testimonialsData = bakedTesti;
-            }
-        } catch(e) {}
-    }
-    
     if (!Array.isArray(testimonialsData)) testimonialsData = [];
     
-    const saveTestimonialsToStorage = () => {
+    // Save to localStorage & Firebase
+    const saveTestimonialsToStorage = async () => {
         localStorage.setItem('ai_testimonials_items', JSON.stringify(testimonialsData));
+        try {
+            await db.collection('r_ia_studio_testimonials').doc('data').set({ items: testimonialsData });
+        } catch(e) { console.error("Firebase error", e); }
     };
+
+    // Fetch live testimonials
+    db.collection('r_ia_studio_testimonials').doc('data').get().then(doc => {
+        if (doc.exists && doc.data().items) {
+            testimonialsData = doc.data().items;
+            localStorage.setItem('ai_testimonials_items', JSON.stringify(testimonialsData));
+            renderTestimonials();
+        }
+    }).catch(e => console.error(e));
 
     /* ==========================================
        WHATSAPP PHONE NUMBER MANAGER
@@ -173,6 +192,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (savedAvatar && avatarImg) {
             avatarImg.setAttribute('src', savedAvatar);
         }
+
+        // Fetch live texts from Firebase
+        db.collection('r_ia_studio_settings').doc('texts').get().then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                
+                editables.forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    const fbKey = `editable_text_${key}`;
+                    if (data[fbKey]) {
+                        el.innerHTML = data[fbKey];
+                        localStorage.setItem(fbKey, data[fbKey]);
+                    }
+                });
+                
+                if (data.avatar_img_src && avatarImg) {
+                    avatarImg.setAttribute('src', data.avatar_img_src);
+                    localStorage.setItem('avatar_img_src', data.avatar_img_src);
+                }
+                
+                if (data.whatsapp_phone_number && data.whatsapp_phone_number !== whatsappPhone) {
+                    updateWhatsappLinks(data.whatsapp_phone_number);
+                }
+            }
+        }).catch(e => console.error(e));
     };
     
     loadSavedTexts();
@@ -592,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
         adminPhoneInput.value = whatsappPhone;
         adminPhoneInput.addEventListener('input', (e) => {
             updateWhatsappLinks(e.target.value);
+            db.collection('r_ia_studio_settings').doc('texts').set({ whatsapp_phone_number: e.target.value }, { merge: true });
         });
     }
 
@@ -614,6 +659,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('blur', () => {
             const key = el.getAttribute('data-key');
             localStorage.setItem(`editable_text_${key}`, el.innerHTML);
+            db.collection('r_ia_studio_settings').doc('texts').set({ [`editable_text_${key}`]: el.innerHTML }, { merge: true });
         });
     });
 
@@ -770,6 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (avatarImg) {
                 avatarImg.setAttribute('src', url);
                 localStorage.setItem('avatar_img_src', url);
+                db.collection('r_ia_studio_settings').doc('texts').set({ avatar_img_src: url }, { merge: true });
             }
             avatarModal.classList.remove('open');
         });
