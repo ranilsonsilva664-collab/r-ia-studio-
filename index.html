@@ -99,24 +99,79 @@
                 <p class="section-subtitle">Soluções reais desenvolvidas com inteligência artificial para o seu negócio.</p>
             </div>
 
-            <!-- Abas do Portfólio -->
-            <div class="portfolio-tabs">
-                <button class="tab-btn active" data-tab="all">Todos</button>
-                <button class="tab-btn" data-tab="videos">Vídeos com IA</button>
-                <button class="tab-btn" data-tab="apps">Web Apps</button>
-                <button class="tab-btn" data-tab="sites">Sites</button>
-                <button class="tab-btn" data-tab="design">Fotos & Banners</button>
+            <!-- BLOCO 1: VÍDEOS COM IA -->
+            <div class="portfolio-category-block" id="category-videos">
+                <div class="category-header">
+                    <div class="cat-title-wrap">
+                        <div class="cat-icon"><i class="fa-solid fa-video"></i></div>
+                        <h3 class="cat-title">Vídeos com IA</h3>
+                    </div>
+                    <p class="cat-desc">Produções audiovisuais criadas com inteligência artificial para campanhas, redes sociais e apresentações profissionais.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Vídeos%20com%20IA!" target="_blank" class="btn btn-small btn-outline"><i class="fa-brands fa-whatsapp"></i> Ver todos</a>
+                </div>
+                <div class="portfolio-carousel-wrapper category-carousel">
+                    <button class="carousel-control prev-btn" id="carouselPrevVideos" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="portfolio-grid" id="portfolioGridVideos"></div>
+                    <button class="carousel-control next-btn" id="carouselNextVideos" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
 
-            <!-- Grid do Portfólio / Carrossel (Preenchido dinamicamente pelo script.js) -->
-            <div class="portfolio-carousel-wrapper">
-                <button class="carousel-control prev-btn" id="carouselPrevBtn" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
-                
-                <div class="portfolio-grid" id="portfolioGrid">
-                    <!-- Cards will be injected by script.js -->
+            <!-- BLOCO 2: WEB APPS -->
+            <div class="portfolio-category-block" id="category-apps">
+                <div class="category-header">
+                    <div class="cat-title-wrap">
+                        <div class="cat-icon"><i class="fa-solid fa-window-restore"></i></div>
+                        <h3 class="cat-title">Web Apps</h3>
+                    </div>
+                    <p class="cat-desc">Aplicações web modernas, interativas e personalizadas para facilitar processos e melhorar a experiência do cliente.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Web%20Apps!" target="_blank" class="btn btn-small btn-outline"><i class="fa-brands fa-whatsapp"></i> Ver todos</a>
                 </div>
-                
-                <button class="carousel-control next-btn" id="carouselNextBtn" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="portfolio-carousel-wrapper category-carousel">
+                    <button class="carousel-control prev-btn" id="carouselPrevApps" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="portfolio-grid" id="portfolioGridApps"></div>
+                    <button class="carousel-control next-btn" id="carouselNextApps" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- BLOCO 3: SITES -->
+            <div class="portfolio-category-block" id="category-sites">
+                <div class="category-header">
+                    <div class="cat-title-wrap">
+                        <div class="cat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3 class="cat-title">Sites</h3>
+                    </div>
+                    <p class="cat-desc">Sites, mini sites e páginas estratégicas criadas para apresentar marcas, produtos e serviços com mais profissionalismo.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Sites!" target="_blank" class="btn btn-small btn-outline"><i class="fa-brands fa-whatsapp"></i> Ver todos</a>
+                </div>
+                <div class="portfolio-carousel-wrapper category-carousel">
+                    <button class="carousel-control prev-btn" id="carouselPrevSites" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="portfolio-grid" id="portfolioGridSites"></div>
+                    <button class="carousel-control next-btn" id="carouselNextSites" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- BLOCO 4: FOTOS & BANNERS -->
+            <div class="portfolio-category-block" id="category-design">
+                <div class="category-header">
+                    <div class="cat-title-wrap">
+                        <div class="cat-icon"><i class="fa-solid fa-image"></i></div>
+                        <h3 class="cat-title">Fotos & Banners</h3>
+                    </div>
+                    <p class="cat-desc">Imagens, artes e criativos profissionais para campanhas, anúncios, redes sociais e materiais de divulgação.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Fotos%20e%20Banners!" target="_blank" class="btn btn-small btn-outline"><i class="fa-brands fa-whatsapp"></i> Ver todos</a>
+                </div>
+                <div class="portfolio-carousel-wrapper category-carousel">
+                    <button class="carousel-control prev-btn" id="carouselPrevDesign" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="portfolio-grid" id="portfolioGridDesign"></div>
+                    <button class="carousel-control next-btn" id="carouselNextDesign" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- CHAMADA FINAL DO PORTFÓLIO -->
+            <div class="final-cta text-center card-glass">
+                <h2>Gostou de algum projeto?</h2>
+                <p>Me chame no WhatsApp e eu crio uma solução personalizada para sua marca.</p>
+                <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento!" target="_blank" class="btn btn-primary btn-large pulse-animation"><i class="fa-brands fa-whatsapp"></i> Quero um projeto assim</a>
             </div>
         </div>
     </section>

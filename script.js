@@ -224,15 +224,25 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================
        RENDER PORTFOLIO DYNAMICALLY
        ========================================== */
-    const portfolioGrid = document.getElementById('portfolioGrid');
-    
     const renderPortfolio = () => {
-        if (!portfolioGrid) return;
-        portfolioGrid.innerHTML = '';
+        const grids = {
+            videos: document.getElementById('portfolioGridVideos'),
+            apps: document.getElementById('portfolioGridApps'),
+            sites: document.getElementById('portfolioGridSites'),
+            design: document.getElementById('portfolioGridDesign')
+        };
+        
+        // Clear all grids
+        Object.values(grids).forEach(grid => {
+            if (grid) grid.innerHTML = '';
+        });
         
         const isAdmin = document.body.classList.contains('admin-mode-active');
         
         portfolioData.forEach(item => {
+            const grid = grids[item.category];
+            if (!grid) return;
+
             const card = document.createElement('div');
             card.className = 'portfolio-item card-glass';
             card.setAttribute('data-category', item.category);
@@ -288,14 +298,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             
-            portfolioGrid.appendChild(card);
+            grid.appendChild(card);
         });
 
         // Rebind video previews and lightbox event listeners
         bindPortfolioEvents();
         
-        // Retrigger active tab filter in case a filter is active
-        applyActiveFilter();
+        // Hide empty category blocks
+        Object.entries(grids).forEach(([cat, grid]) => {
+            if (grid) {
+                const block = document.getElementById(`category-${cat}`);
+                if (block) {
+                    block.style.display = grid.children.length === 0 ? 'none' : 'block';
+                }
+            }
+        });
     };
 
     const getCategoryLabel = (cat) => {
@@ -414,59 +431,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================
-       PORTFOLIO TAB FILTERING
-       ========================================== */
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    
-    const applyActiveFilter = () => {
-        const activeTabBtn = document.querySelector('.tab-btn.active');
-        if (!activeTabBtn) return;
-        
-        const category = activeTabBtn.getAttribute('data-tab');
-        const items = document.querySelectorAll('.portfolio-item');
-        
-        items.forEach(item => {
-            const itemCategory = item.getAttribute('data-category');
-            if (category === 'all' || itemCategory === category) {
-                item.classList.remove('hidden');
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-    };
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            applyActiveFilter();
-        });
-    });
-
-    /* ==========================================
        PORTFOLIO CAROUSEL CONTROLS
        ========================================== */
-    const carouselPrevBtn = document.getElementById('carouselPrevBtn');
-    const carouselNextBtn = document.getElementById('carouselNextBtn');
-    
-    if (carouselPrevBtn && carouselNextBtn && portfolioGrid) {
-        carouselPrevBtn.addEventListener('click', () => {
-            const cardWidth = portfolioGrid.querySelector('.portfolio-item')?.offsetWidth || 340;
-            portfolioGrid.scrollBy({ left: -(cardWidth + 30), behavior: 'smooth' });
-        });
+    const setupCategoryCarousel = (catName) => {
+        const grid = document.getElementById(`portfolioGrid${catName}`);
+        const prevBtn = document.getElementById(`carouselPrev${catName}`);
+        const nextBtn = document.getElementById(`carouselNext${catName}`);
         
-        carouselNextBtn.addEventListener('click', () => {
-            const cardWidth = portfolioGrid.querySelector('.portfolio-item')?.offsetWidth || 340;
-            portfolioGrid.scrollBy({ left: cardWidth + 30, behavior: 'smooth' });
-        });
-        
-        // Reseta o scroll para o in├¡cio ao trocar de aba
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                portfolioGrid.scrollTo({ left: 0, behavior: 'smooth' });
+        if (grid && prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                const cardWidth = grid.querySelector('.portfolio-item')?.offsetWidth || 340;
+                grid.scrollBy({ left: -(cardWidth + 30), behavior: 'smooth' });
             });
-        });
-    }
+            nextBtn.addEventListener('click', () => {
+                const cardWidth = grid.querySelector('.portfolio-item')?.offsetWidth || 340;
+                grid.scrollBy({ left: cardWidth + 30, behavior: 'smooth' });
+            });
+        }
+    };
+
+    setupCategoryCarousel('Videos');
+    setupCategoryCarousel('Apps');
+    setupCategoryCarousel('Sites');
+    setupCategoryCarousel('Design');
 
     /* ==========================================
        BIND DYNAMIC MEDIA EVENTS (HOVER VIDEO, LIGHTBOX)
