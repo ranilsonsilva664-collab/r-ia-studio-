@@ -143,6 +143,100 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(e => console.error(e));
 
     /* ==========================================
+       SECTION VISIBILITY (ADMIN)
+       ========================================== */
+    let sectionVisibility = JSON.parse(localStorage.getItem('ai_section_visibility')) || {
+        videos: true,
+        apps: true,
+        sites: true,
+        design: true,
+        testimonials: true
+    };
+
+    const saveVisibilityToStorage = async () => {
+        localStorage.setItem('ai_section_visibility', JSON.stringify(sectionVisibility));
+        try {
+            await db.collection('r_ia_studio_settings').doc('visibility').set(sectionVisibility);
+        } catch(e) { console.error("Firebase error", e); }
+    };
+
+    db.collection('r_ia_studio_settings').doc('visibility').get().then(doc => {
+        if (doc.exists) {
+            sectionVisibility = { ...sectionVisibility, ...doc.data() };
+            localStorage.setItem('ai_section_visibility', JSON.stringify(sectionVisibility));
+            applySectionVisibility();
+            updateVisibilityButtons();
+        }
+    }).catch(e => console.error(e));
+
+    const applySectionVisibility = () => {
+        const isAdmin = document.body.classList.contains('admin-mode-active');
+        
+        const sectionsToToggle = [
+            { id: 'videos', elId: 'category-videos' },
+            { id: 'apps', elId: 'category-apps' },
+            { id: 'sites', elId: 'category-sites' },
+            { id: 'design', elId: 'category-design' },
+            { id: 'testimonials', elId: 'testimonials' }
+        ];
+
+        sectionsToToggle.forEach(sec => {
+            const el = document.getElementById(sec.elId);
+            if (el) {
+                // Determine if this block has items (only for portfolio categories)
+                let hasItems = true;
+                if (sec.id !== 'testimonials') {
+                    const grid = document.getElementById(`portfolioGrid${sec.id.charAt(0).toUpperCase() + sec.id.slice(1)}`);
+                    hasItems = grid && grid.children.length > 0;
+                } else {
+                    const grid = document.getElementById('testimonialsGrid');
+                    hasItems = grid && grid.children.length > 0;
+                }
+
+                if (!hasItems) {
+                    el.style.display = 'none';
+                } else if (!sectionVisibility[sec.id]) {
+                    if (isAdmin) {
+                        el.style.display = 'block';
+                        el.style.opacity = '0.4';
+                        el.style.filter = 'grayscale(50%)';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                } else {
+                    el.style.display = 'block';
+                    el.style.opacity = '1';
+                    el.style.filter = 'none';
+                }
+            }
+        });
+    };
+
+    const updateVisibilityButtons = () => {
+        ['videos', 'apps', 'sites', 'design', 'testimonials'].forEach(id => {
+            const btn = document.getElementById(`btn-toggle-${id}`);
+            if (btn) {
+                if (sectionVisibility[id]) {
+                    btn.textContent = 'Ativo';
+                    btn.className = 'btn btn-small btn-primary';
+                } else {
+                    btn.textContent = 'Oculto';
+                    btn.className = 'btn btn-small btn-outline';
+                    btn.style.borderColor = '#ff4444';
+                    btn.style.color = '#ff4444';
+                }
+            }
+        });
+    };
+
+    window.toggleSectionVisibility = (id) => {
+        sectionVisibility[id] = !sectionVisibility[id];
+        saveVisibilityToStorage();
+        updateVisibilityButtons();
+        applySectionVisibility();
+    };
+
+    /* ==========================================
        WHATSAPP PHONE NUMBER MANAGER
        ========================================== */
     let whatsappPhone = localStorage.getItem('whatsapp_phone_number') || document.body.getAttribute('data-whatsapp') || '5511999999999';
@@ -304,15 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Rebind video previews and lightbox event listeners
         bindPortfolioEvents();
         
-        // Hide empty category blocks
-        Object.entries(grids).forEach(([cat, grid]) => {
-            if (grid) {
-                const block = document.getElementById(`category-${cat}`);
-                if (block) {
-                    block.style.display = grid.children.length === 0 ? 'none' : 'block';
-                }
-            }
-        });
+        applySectionVisibility();
     };
 
     const getCategoryLabel = (cat) => {
@@ -389,6 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Rebind video previews and lightbox event listeners
         bindPortfolioEvents();
+        applySectionVisibility();
     };
 
     const setupTestimonialsCarousel = () => {
@@ -557,11 +644,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminControlsPanel = document.getElementById('adminControlsPanel');
     const exitAdminBtn = document.getElementById('exitAdminBtn');
     const addNewItemBtn = document.getElementById('addNewItemBtn');
+    const manageSectionsBtn = document.getElementById('manageSectionsBtn');
     const exportHtmlBtn = document.getElementById('exportHtmlBtn');
     
     const adminModal = document.getElementById('adminModal');
     const adminModalClose = document.getElementById('adminModalClose');
     const portfolioItemForm = document.getElementById('portfolioItemForm');
+    
+    const sectionsModal = document.getElementById('sectionsModal');
+    const sectionsModalClose = document.getElementById('sectionsModalClose');
     
     const avatarModal = document.getElementById('avatarModal');
     const changeAvatarBtn = document.getElementById('changeAvatarBtn');
@@ -605,8 +696,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Re-render to update edit/delete buttons
+        // Re-render to update edit/delete buttons and visibility
         renderPortfolio();
+        renderTestimonials();
+        applySectionVisibility();
     };
 
     if (adminToggleBtn) {
@@ -681,6 +774,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (adminModalClose) {
         adminModalClose.addEventListener('click', () => adminModal.classList.remove('open'));
+    }
+
+    // Open/Close Sections Modal
+    if (manageSectionsBtn) {
+        manageSectionsBtn.addEventListener('click', () => {
+            updateVisibilityButtons();
+            sectionsModal.classList.add('open');
+        });
+    }
+    
+    if (sectionsModalClose) {
+        sectionsModalClose.addEventListener('click', () => sectionsModal.classList.remove('open'));
     }
 
     // Edit Item function (exposed to window)
@@ -847,6 +952,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (savedAvatar && avatarImgClone) {
                 avatarImgClone.setAttribute('src', savedAvatar);
             }
+            
+            // Clean up admin styles from hidden sections
+            ['videos', 'apps', 'sites', 'design', 'testimonials'].forEach(id => {
+                const elId = id === 'testimonials' ? 'testimonials' : `category-${id}`;
+                const el = clone.querySelector(`#${elId}`);
+                if (el) {
+                    if (el.style.display === 'block' && el.style.opacity !== '1') {
+                        // Reseta a opacidade e filtros para o modo normal
+                        el.style.opacity = '1';
+                        el.style.filter = 'none';
+                        // E se estiver oculto pelo usuário (via state), força display none
+                        if (!sectionVisibility[id]) {
+                            el.style.display = 'none';
+                        }
+                    }
+                }
+            });
             
             // Grava o n├║mero do WhatsApp atualizado no clone
             clone.querySelector('body').setAttribute('data-whatsapp', whatsappPhone);

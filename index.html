@@ -256,6 +256,9 @@
             <button class="admin-btn admin-btn-primary" id="addNewTestiBtn">
                 <i class="fa-solid fa-plus"></i> Novo Depoimento
             </button>
+            <button class="admin-btn admin-btn-secondary" id="manageSectionsBtn" style="background: #333; color: white;">
+                <i class="fa-solid fa-eye-slash"></i> Sessões
+            </button>
             <button class="admin-btn admin-btn-success" id="exportHtmlBtn" style="display: none;">
                 <i class="fa-solid fa-download"></i> Exportar HTML Final
             </button>
@@ -334,6 +337,38 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Atualizar Imagem</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal para Gerenciar Sessões -->
+    <div class="admin-modal" id="sectionsModal">
+        <div class="admin-modal-content card-glass" style="max-width: 400px;">
+            <button class="admin-modal-close" id="sectionsModalClose"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Visibilidade das Sessões</h3>
+            <p style="margin-bottom: 20px; font-size: 0.9em; color: #ccc;">Desative os serviços que não está prestando. Eles ficarão ocultos para os clientes.</p>
+            
+            <div class="visibility-list">
+                <div class="visibility-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span><i class="fa-solid fa-video" style="width: 25px;"></i> Vídeos com IA</span>
+                    <button class="btn btn-small btn-primary" id="btn-toggle-videos" onclick="window.toggleSectionVisibility('videos')">Ativo</button>
+                </div>
+                <div class="visibility-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span><i class="fa-solid fa-window-restore" style="width: 25px;"></i> Web Apps</span>
+                    <button class="btn btn-small btn-primary" id="btn-toggle-apps" onclick="window.toggleSectionVisibility('apps')">Ativo</button>
+                </div>
+                <div class="visibility-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span><i class="fa-solid fa-laptop-code" style="width: 25px;"></i> Sites</span>
+                    <button class="btn btn-small btn-primary" id="btn-toggle-sites" onclick="window.toggleSectionVisibility('sites')">Ativo</button>
+                </div>
+                <div class="visibility-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span><i class="fa-solid fa-image" style="width: 25px;"></i> Fotos & Banners</span>
+                    <button class="btn btn-small btn-primary" id="btn-toggle-design" onclick="window.toggleSectionVisibility('design')">Ativo</button>
+                </div>
+                <div class="visibility-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                    <span><i class="fa-solid fa-comment-dots" style="width: 25px;"></i> Depoimentos</span>
+                    <button class="btn btn-small btn-primary" id="btn-toggle-testimonials" onclick="window.toggleSectionVisibility('testimonials')">Ativo</button>
+                </div>
+            </div>
         </div>
     </div>
 
