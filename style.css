@@ -418,6 +418,19 @@ h1, h2, h3, h4 {
     object-position: center;
 }
 
+.mobile-video {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-video {
+        display: none;
+    }
+    .mobile-video {
+        display: block;
+    }
+}
+
 .hero-video-overlay {
     position: absolute;
     top: 0;
