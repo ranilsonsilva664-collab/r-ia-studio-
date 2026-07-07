@@ -650,7 +650,7 @@ h1, h2, h3, h4 {
     flex: 0 0 calc(33.333% - 20px); /* 3 cards visible on desktop */
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     opacity: 1;
     transform: scale(1);
     scroll-snap-align: start;
