@@ -337,8 +337,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const grid = grids[item.category];
             if (!grid) return;
 
+            const borderDelay = `-${Math.random() * 4}s`;
             const card = document.createElement('div');
-            card.className = 'portfolio-item card-glass';
+            card.className = 'portfolio-item card-glass animated-border-card';
+            card.style.setProperty('--border-delay', borderDelay);
             card.setAttribute('data-category', item.category);
             card.setAttribute('data-id', item.id);
             
@@ -421,8 +423,10 @@ document.addEventListener('DOMContentLoaded', () => {
         testimonialsGrid.innerHTML = '';
         
         testimonialsData.forEach(item => {
+            const borderDelay = `-${Math.random() * 4}s`;
             const card = document.createElement('div');
-            card.className = 'portfolio-item card-glass';
+            card.className = 'portfolio-item card-glass animated-border-card';
+            card.style.setProperty('--border-delay', borderDelay);
             card.setAttribute('data-id', item.id);
             
             let mediaHtml = '';
@@ -987,8 +991,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 gridClone.innerHTML = '';
                 
                 portfolioData.forEach(item => {
+                    const borderDelay = `-${Math.random() * 4}s`;
                     const card = document.createElement('div');
-                    card.className = 'portfolio-item card-glass';
+                    card.className = 'portfolio-item card-glass animated-border-card';
+                    card.style.setProperty('--border-delay', borderDelay);
                     card.setAttribute('data-category', item.category);
                     card.setAttribute('data-id', item.id);
                     
@@ -1059,8 +1065,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 testiGridClone.innerHTML = '';
                 
                 testimonialsData.forEach(item => {
+                    const borderDelay = `-${Math.random() * 4}s`;
                     const card = document.createElement('div');
-                    card.className = 'portfolio-item card-glass';
+                    card.className = 'portfolio-item card-glass animated-border-card';
+                    card.style.setProperty('--border-delay', borderDelay);
                     card.setAttribute('data-id', item.id);
                     
                     let mediaHtml = '';
