@@ -1203,4 +1203,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    /* ==========================================
+       AFTER HERO VIDEO OBSERVER
+       ========================================== */
+    const afterHeroWrapper = document.getElementById('after-hero-wrapper');
+    const afterHeroVideo = document.getElementById('after-hero-video');
+
+    if (afterHeroWrapper && afterHeroVideo) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            afterHeroVideo.pause();
+        } else {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        afterHeroVideo.play().catch(() => {});
+                    } else {
+                        afterHeroVideo.pause();
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.01
+            });
+
+            videoObserver.observe(afterHeroWrapper);
+        }
+    }
 });
